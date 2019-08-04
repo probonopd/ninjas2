@@ -9,7 +9,7 @@ install:
 script:
   - git submodule update --init --recursive
   - make -j$(nproc)
-  - mkdir -p ./appdir ; cp -r ./bin ./appdir/
+  - mkdir -p ./appdir/usr ; cp -r ./bin ./appdir/usr/
   - mkdir -p appdir/usr/share/icons/scalable/apps/ ; touch appdir/usr/share/icons/scalable/apps/ninjas2.svg  # FIXME: "make install" should do this
   - mkdir -p appdir/usr/share/applications/ ; cp ninjas2.desktop appdir/usr/share/applications/  # FIXME: "make install" should do this
   - find appdir/
