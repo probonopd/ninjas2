@@ -4,12 +4,14 @@ sudo: require
 dist: trusty
 
 install:
-  - sudo apt-get -y install libgl1-mesa-dev libx11-dev libsndfile1-dev libsamplerate0-dev
+  - sudo apt-get -y install libgl1-mesa-dev libx11-dev libsndfile1-dev libsamplerate0-dev libjack-jackd2-dev
 
 script:
   - git submodule update --init --recursive
   - make -j$(nproc)
   - mkdir -p ./appdir ; cp -r ./bin ./appdir/
+  - mkdir -p appdir/usr/share/icons/scalable/apps/ ; touch appdir/usr/share/icons/scalable/apps/ninjas2.svg  # FIXME: "make install" should do this
+  - mkdir -p appdir/usr/share/applications/ ; cp ninjas2.desktop appdir/usr/share/applications/  # FIXME: "make install" should do this
   - find appdir/
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
